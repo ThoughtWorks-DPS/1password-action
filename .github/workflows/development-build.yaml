@@ -22,7 +22,6 @@ permissions:
   repository-projects: read
   security-events: write
   statuses: read
-  id-token: read
 
 jobs:
 
