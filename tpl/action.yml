@@ -1,0 +1,82 @@
+# yamllint disable rule:line-length
+---
+name: tpl
+
+description: |
+  Populate template file with values from 1password vault and write to out-file.
+
+  Must provide the template filename. By default, the command will look in the
+  tpl/ folder and use the tpl-file without the tpl-ext as the out-file name. you
+  may override all of these defaults.
+
+  For example, if you provide a tpl-file parameter of "myfile.yaml" the command will
+  attempt to read "./tpl/myfile.yaml.tpl" and then write the result to "./myfile.yaml"
+
+  See template file format documentation at:
+  https://developer.1password.com/docs/cli/secrets-template-syntax/
+
+inputs:
+
+  working-directory:
+    description: Set working directory. Default is ./.
+    required: false
+    default: .
+
+  tpl-path:
+    description: path to template file
+    required: false
+    default: tpl
+
+  tpl-file:
+    description: template file name
+    required: true
+
+  tpl-ext:
+    description: template file extention
+    required: false
+    default: tpl
+
+  out-path:
+    description: path to write location
+    required: false
+    default: .
+
+  out-file:
+    description: output file name
+    required: false
+    default: ""
+
+  before-tpl:
+    description: Optional steps to run before template injection.
+    required: false
+    default: echo "none"
+
+  after-tpl:
+    description: Optional steps to run after template injection.
+    required: false
+    default: echo "none"
+
+runs:
+  using: "composite"
+
+  steps:
+  
+    - shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ inputs.before-tpl }}
+
+    - shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        #!/usr/bin/env bash
+        set -eo pipefail
+
+        if [[ "${{ inputs.out-file }}" == ""]]; then
+          op inject -i ${{ inputs.tpl-path }}/${{ inputs.tpl-file }}.${{ inputs.tpl-ext }} -o ${{ inputs.out-path }}/${{ inputs.tpl-file }}
+        else
+          op inject -i ${{ inputs.tpl-path }}/${{ inputs.tpl-file }}.${{ inputs.tpl-ext }} -o ${{ inputs.out-path }}/${{ inputs.out-file }}
+        fi
+
+    - shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ inputs.after-tpl }}
