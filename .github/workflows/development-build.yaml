@@ -9,19 +9,23 @@ on:
 
 jobs:
 
-  gha-static-code-analysis:
-    name: gha static code analysis
-    runs-on: ubuntu-latest
+  static-code-analysis:
+    name: static code analysis
+    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4.1.4
+  # gha-static-code-analysis:
+  #   name: gha static code analysis
+  #   runs-on: ubuntu-latest
 
-      # - name: gha-tools/lint
-      #   run: yamllint .
+  #   steps:
+  #     - name: checkout code
+  #       uses: actions/checkout@v4.1.4
 
-      - name: check values
-        run: echo "$GITHUB_WORKFLOW_REF"
+  #     # - name: gha-tools/lint
+  #     #   run: yamllint .
+
+  #     - name: check values
+  #       run: echo "$GITHUB_WORKFLOW_REF"
 
 
 
