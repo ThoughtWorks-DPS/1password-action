@@ -21,7 +21,7 @@ jobs:
       #   run: yamllint .
 
       - name: check values
-        run: echo "$GITHUB_WORKFLOW"
+        run: echo "$GITHUB_WORKFLOW_REF"
 
 
 
