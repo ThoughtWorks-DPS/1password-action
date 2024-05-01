@@ -9,7 +9,7 @@ on:
     tags:
       - "!*"
 
-# permissions:
+permissions: read-all
 #   actions: read
 #   checks: read
 #   contents: read
