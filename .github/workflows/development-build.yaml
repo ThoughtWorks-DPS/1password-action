@@ -27,6 +27,8 @@ jobs:
 
   static-code-analysis:
     name: static code analysis
+    permissions:
+      security-events: write
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
   # - orb-tools/publish:
