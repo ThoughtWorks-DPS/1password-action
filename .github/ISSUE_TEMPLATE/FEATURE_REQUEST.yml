@@ -11,8 +11,8 @@ body:
       label: "Is there an existing issue that is already proposing this?"
       description: "Please search [here](https://github.com/ThoughtWorks-DPS/psk-kit-github-actions/issues?q=is%3Aissue) to see if an issue already requesting this feature"
       options:
-      - label: "I have searched the existing feature requests"
-        required: true
+        - label: "I have searched the existing feature requests"
+          required: true
 
   - type: textarea
     validations:

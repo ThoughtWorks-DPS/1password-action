@@ -9,15 +9,17 @@ on:
     tags:
       - "!*"
 
-#permissions: read-all
-  # contents: read
-  # security-events: write
-  # actions: read, attestations: read, checks: read, deployments: read, discussions: read, issues: read, packages: read, pages: read, pull-requests: read, repository-projects: read, statuses: read, id-token: read
+# permissions: read-all
+# contents: read
+# security-events: write
+# actions: read, attestations: read, checks: read, deployments: read, discussions: read, issues: read, packages: read, pages: read, pull-requests: read, repository-projects: read, statuses: read, id-token: read
 
 jobs:
 
   static-code-analysis:
     name: static code analysis
+    permissions:
+      security-events: write
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
   # - orb-tools/publish:
