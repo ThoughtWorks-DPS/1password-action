@@ -13,7 +13,6 @@ jobs:
     name: static code analysis
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
-
   # gha-static-code-analysis:
   #   name: gha static code analysis
   #   runs-on: ubuntu-latest
@@ -22,24 +21,7 @@ jobs:
   #     - name: checkout code
   #       uses: actions/checkout@v4.1.4
 
-  #     # - name: gha-tools/lint
-  #     #   run: yamllint .
 
-  #     - name: check values
-  #       run: echo "$GITHUB_WORKFLOW_REF"
-
-
-
-      # - orb-tools/review:
-      #     max_command_length: 100
-      #     exclude: RC010
-      #     filters: *on-push-main
-
-      # - shellcheck/check:
-      #     filters: *on-push-main
-
-      # - orb-tools/pack:
-      #     filters: *on-push-main
 
       # - orb-tools/publish:
       #     name: publish development package
