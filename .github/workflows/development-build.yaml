@@ -21,7 +21,7 @@ jobs:
       #   run: yamllint .
 
       - name: check values
-        run: echo "${{ github.action_path }}"
+        run: echo "$GITHUB_ACTION_PATH"
 
 
 
