@@ -1,3 +1,5 @@
+# yamllint disable rule:line-length
+---
 name: static analysis
 
 on:
@@ -7,50 +9,42 @@ on:
     tags:
       - "!*"
 
+permissions: read-all
+
 jobs:
 
   static-code-analysis:
     name: static code analysis
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
-  # gha-static-code-analysis:
-  #   name: gha static code analysis
-  #   runs-on: ubuntu-latest
+  # - orb-tools/publish:
+  #     name: publish development package
+  #     context: *context
+  #     orb_name: *orb-name
+  #     vcs_type: << pipeline.project.type >>
+  #     filters: *on-push-main
+  #     requires:
+  #       - orb-tools/lint
+  #       - orb-tools/review
+  #       - shellcheck/check
+  #       - orb-tools/pack
 
-  #   steps:
-  #     - name: checkout code
-  #       uses: actions/checkout@v4.1.4
-
-      # - orb-tools/publish:
-      #     name: publish development package
-      #     context: *context
-      #     orb_name: *orb-name
-      #     vcs_type: << pipeline.project.type >>
-      #     filters: *on-push-main
-      #     requires:
-      #       - orb-tools/lint
-      #       - orb-tools/review
-      #       - shellcheck/check
-      #       - orb-tools/pack
-
-      # - orb-tools/continue:
-      #     name: Launch integration test pipeline
-      #     context: *context
-      #     orb_name: *orb-name
-      #     config_path: .circleci/integration-test.yml
-      #     pipeline_number: << pipeline.number >>
-      #     vcs_type: << pipeline.project.type >>
-      #     filters: *on-push-main
-      #     requires:
-      #       - publish development package
-
-
+  # - orb-tools/continue:
+  #     name: Launch integration test pipeline
+  #     context: *context
+  #     orb_name: *orb-name
+  #     config_path: .circleci/integration-test.yml
+  #     pipeline_number: << pipeline.number >>
+  #     vcs_type: << pipeline.project.type >>
+  #     filters: *on-push-main
+  #     requires:
+  #       - publish development package
 
   # notify
   # on-success:
   #   name: deploy
   #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
-  #   needs: 
+  #   needs:
   #     - static-code-analysis
   #     - plan-pocdev-changes
   #     - apply-pocdev-changes
@@ -60,13 +54,13 @@ jobs:
   #     sns-topic-name: "slack_notification_topic"
   #   secrets:
   #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}       
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   #   if: success()
 
   # on-failure:
   #   name: fail
   #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
-  #   needs: 
+  #   needs:
   #     - static-code-analysis
   #     - plan-pocdev-changes
   #     - apply-pocdev-changes
@@ -76,7 +70,7 @@ jobs:
   #     sns-topic-name: "slack_notification_topic"
   #   secrets:
   #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}       
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   #   if: failure()
 
   #     - name: install 1Password CLI

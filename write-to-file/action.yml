@@ -26,7 +26,7 @@ runs:
   using: "composite"
 
   steps:
-  
+
     - shell: bash
       working-directory: ${{ inputs.working-directory }}
       run: echo "op://${{ inputs.op-value }}" > ${{ inputs.out-file }}.tpl
