@@ -16,18 +16,21 @@ permissions:
 
 jobs:
 
-  publish-version:
-    name: publish semantic release version of action
-    runs-on: ubuntu-latest
+  release-version:
+    name: release version
+    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@main
 
-    steps:
-      - name: publish semantic release version from tag
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          SHA=${{ github.sha }}
-          gh release create "${{ github.ref_name }}" \
-             --repo="${{ github.repository }}" \
-             --title="${{ github.ref_name }}, SHA ${{ github.sha }}" \
-             --generate-notes --notes "SHA ${SHA:0:40}"
+  # publish-version:
+  #   name: publish semantic release version of action
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: publish semantic release version from tag
+  #       shell: bash
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: |
+  #         gh release create "${{ github.ref_name }}" \
+  #            --repo="${{ github.repository }}" \
+  #            --title="${{ github.ref_name }} SHA${{ github.sha }}" \
+  #            --generate-notes --notes "Use @SHA in action reference for increased security."
