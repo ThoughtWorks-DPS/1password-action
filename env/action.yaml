@@ -32,4 +32,4 @@ runs:
       run: |
         #!/usr/bin/env bash
         set -eo pipefail
-        op inject -i ${{ inputs.env-file }} -o $GITHUB_ENV
+        op inject -i ${{ inputs.env-file }} >> $GITHUB_ENV
