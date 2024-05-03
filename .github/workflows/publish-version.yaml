@@ -1,0 +1,24 @@
+# yamllint disable rule:line-length
+# yamllint disable rule:truthy
+---
+name: publish version
+
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "*"
+
+jobs:
+
+  publish-version:
+    name: publish semantic release version of action
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: test
+        shell: bash
+        run: |
+          echo "GITHUB_SHA ${{ github.sha }}"
+          echo "GITHUB_REF ${{ github.ref }}"

@@ -26,17 +26,6 @@ jobs:
     secrets:
       OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
-  # - orb-tools/continue:
-  #     name: Launch integration test pipeline
-  #     context: *context
-  #     orb_name: *orb-name
-  #     config_path: .circleci/integration-test.yml
-  #     pipeline_number: << pipeline.number >>
-  #     vcs_type: << pipeline.project.type >>
-  #     filters: *on-push-main
-  #     requires:
-  #       - publish development package
-
   # notify
   # on-success:
   #   name: deploy
