@@ -8,7 +8,7 @@ on:
 
     secrets:
 
-      OP_SERVICE_ACCOUNT_TOKEN: 
+      OP_SERVICE_ACCOUNT_TOKEN:
         description: 1password vault services account token
         required: false
 
@@ -39,26 +39,26 @@ jobs:
           op-value: empc-lab/svc-gmail/username
           out-file: write_test.txt
 
-      - name: test 1password-action/write-to-file
+      - name: test 1password-action/write-to-file results
         shell: bash
         run: |
           set -exo pipefail
           cat write_test.txt | grep "twdps"
 
-      - name: test 1password-action/tpl using defaults
+      - name: populate template with 1password-action/tpl using defaults
         uses: ThoughtWorks-DPS/1password-action/tpl@main
         with:
           tpl-file: default_email.txt
           before-tpl: echo "before tpl message"
           after-tpl: echo "after tpl message"
 
-      - name: test 1password-action/tpl with defaults
+      - name: test 1password-action/tpl with defaults results
         shell: bash
         run: |
             set -exo pipefail
             cat default_email.txt | grep "twdps"
 
-      - name: test 1password-action/tpl using overrides
+      - name: populate template with 1password-action/tpl using overrides
         uses: ThoughtWorks-DPS/1password-action/tpl@main
         with:
           tpl-path: test
@@ -67,7 +67,7 @@ jobs:
           out-path: .
           out-file: named_email.txt
 
-      - name: test 1password-action/tpl with defaults
+      - name: test 1password-action/tpl using overrides results
         shell: bash
         run: |
             set -exo pipefail
