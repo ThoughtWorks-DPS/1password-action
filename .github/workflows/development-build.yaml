@@ -23,7 +23,8 @@ jobs:
   integration-tests:
     name: integration test
     uses: ./.github/workflows/integration-tests.yaml
-
+    secrets:
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
   # - orb-tools/continue:
   #     name: Launch integration test pipeline

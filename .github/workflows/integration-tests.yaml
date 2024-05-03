@@ -6,17 +6,23 @@ run-name: 1passwrd-action integration tests
 on:
   workflow_call:
 
+    secrets:
+
+      OP_SERVICE_ACCOUNT_TOKEN: 
+        description: 1password vault services account token
+        required: false
+
 permissions:
   contents: read
-
-env:
-  OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
 jobs:
 
   static-code-analysis:
     name: 1passwrd-action integration tests
     runs-on: ubuntu-latest
+
+    env:
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
     steps:
       - name: checkout code
