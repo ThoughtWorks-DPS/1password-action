@@ -20,19 +20,23 @@ jobs:
     name: release version
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@421a368581ea29881a5d70ef1744d90d874c5703    # v0.1.0
 
-  # notify
-  # on-success:
-  #   name: deploy
-  #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
-  #   needs:
-  #     - static-code-analysis
-  #     - plan-pocdev-changes
-  #     - apply-pocdev-changes
-  #     - pocdev-smoke-tests
-  #   with:
-  #     message: "poc-platform-eks-core-services pocdev deployment - URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-  #     sns-topic-name: "slack_notification_topic"
-  #   secrets:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #   if: success()
+  on-success:
+    name: notify new release version
+    if: success()
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Load slack webhook
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: true
+        env:
+          SLACK_WEBHOOK: op://empc-lab/svc-slack/lab-events
+
+      - name: Notify empc teams
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: lab-events
+          SLACK_MESSAGE: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

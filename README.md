@@ -15,8 +15,8 @@ Action for common 1password-cli uses.
 
 example bash env-file format:
 
-export TFE_TOKEN=op://my-vault/terrafor-cloud/team-token
-export SLACK_BOT_TOKEN=op://my-vault/slack/bot-token
+TFE_TOKEN=op://my-vault/terrafor-cloud/team-token
+SLACK_BOT_TOKEN=op://my-vault/slack/bot-token
 
 ```yaml
 - name: source $GITHUB_ENV from file using 1password-action/env
