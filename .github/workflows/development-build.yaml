@@ -3,7 +3,7 @@
 ---
 name: static analysis
 
-on: 
+on:
   push:
     branches:
       - "*"
@@ -21,7 +21,7 @@ jobs:
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@main
 
   integration-tests:
-    name: integration test 
+    name: integration test
     uses: ./.github/workflows/integration-tests.yaml
 
 
