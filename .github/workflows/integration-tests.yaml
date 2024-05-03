@@ -71,3 +71,14 @@ jobs:
         run: |
             set -exo pipefail
             cat named_email.txt | grep "twdps"
+
+      - name: source $GITHUB_ENV from file using 1password-action/env
+        uses: ThoughtWorks-DPS/1password-action/env@main
+        with:
+          env-file: test/op.env
+
+      - name: test 1password-action/env results
+        shell: bash
+        run: |
+            set -exo pipefail
+            echo $GMAIL_ADDRESS | grep "twdps"

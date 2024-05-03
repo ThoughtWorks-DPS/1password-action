@@ -1,0 +1,35 @@
+# yamllint disable rule:line-length
+---
+name: tpl
+
+description: |
+  `source` ENV values into GitHub Actions $GITHUB_ENV from a local file.
+
+  example bash env-file format:
+
+  export TFE_TOKEN=op://my-vault/terrafor-cloud/team-token
+  export SLACK_BOT_TOKEN=op://my-vault/slack/bot-token
+
+inputs:
+
+  working-directory:
+    description: Set working directory. Default is ./.
+    required: false
+    default: .
+
+  env-file:
+    description: environment filename. Default is op.env
+    required: false
+    default: op.env
+
+runs:
+  using: "composite"
+
+  steps:
+
+    - shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        #!/usr/bin/env bash
+        set -eo pipefail
+        op inject -i ${{ inputs.env-file }} -o $GITHUB_ENV

@@ -18,7 +18,7 @@ jobs:
 
   release-version:
     name: release version
-    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@main
+    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@421a368581ea29881a5d70ef1744d90d874c5703    # v0.1.0
 
   # notify
   # on-success:
