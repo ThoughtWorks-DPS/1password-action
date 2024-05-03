@@ -28,7 +28,8 @@ jobs:
         run: |
           echo "GITHUB_SHA ${{ github.sha }}"
           echo "GITHUB_REF ${{ github.ref_name }}"
+          TEST=${{ github.sha }}
           gh release create "${{ github.ref_name }}" \
              --repo="${{ github.repository }}" \
              --title="${{ github.ref_name }}, SHA ${{ github.sha }}" \
-             --generate-notes --notes "SHA ${{ github.sha }}"
+             --generate-notes --notes "SHA $TEST"
