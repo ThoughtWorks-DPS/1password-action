@@ -1,7 +1,7 @@
 # yamllint disable rule:line-length
 # yamllint disable rule:truthy
 ---
-name: publish version
+name: release version
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - "*"
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 jobs:
