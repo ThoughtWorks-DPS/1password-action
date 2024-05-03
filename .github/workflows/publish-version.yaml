@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
 
@@ -23,7 +24,7 @@ jobs:
       - name: publish semantic release version from tag
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "GITHUB_SHA ${{ github.sha }}"
           echo "GITHUB_REF ${{ github.ref_name }}"
