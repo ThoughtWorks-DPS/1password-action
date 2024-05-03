@@ -1,0 +1,59 @@
+# yamllint disable rule:line-length
+# yamllint disable rule:truthy
+---
+run-name: 1passwrd-action integration tests
+
+on:
+  workflow_call:
+
+permissions: read-all
+
+jobs:
+
+  static-code-analysis:
+    name:  1passwrd-action integration tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+
+      - name: write value using 1password-action/write-to-file
+        uses: ThoughtWorks-DPS/1password-action/write-to-file@main
+        with:
+          op-value: empc-lab/svc-gmail/username
+          out-file: write_test.txt
+
+      - name: test 1password-action/write-to-file
+        shell: bash
+        run: |
+          set -exo pipefail
+          cat write_test.txt | grep "twdps"
+
+      - name: test 1password-action/tpl using defaults
+        uses: ThoughtWorks-DPS/1password-action/tpl@main
+        with:
+          tpl-file: default_email.txt
+          before-tpl: echo "before tpl message"
+          after-tpl: echo "after tpl message"
+
+      - name: test 1password-action/tpl with defaults
+        shell: bash
+        run: |
+            set -exo pipefail
+            cat default_email.txt | grep "twdps"
+
+      - name: test 1password-action/tpl using overrides
+        uses: ThoughtWorks-DPS/1password-action/tpl@main
+        with:
+          tpl-path: test
+          tpl-file: email.txt
+          tpl-ext: template
+          out-path: .
+          out-file: named_email.txt
+
+      - name: test 1password-action/tpl with defaults
+        shell: bash
+        run: |
+            set -exo pipefail
+            cat named_email.txt | grep "twdps"
