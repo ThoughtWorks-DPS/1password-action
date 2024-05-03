@@ -1,13 +1,12 @@
 # yamllint disable rule:line-length
 # yamllint disable rule:truthy
 ---
-run-name: 1passwrd-action integration tests
+name: 1password-action integration tests
 
 on:
   workflow_call:
 
     secrets:
-
       OP_SERVICE_ACCOUNT_TOKEN:
         description: 1password vault services account token
         required: false
