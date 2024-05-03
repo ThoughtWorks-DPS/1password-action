@@ -26,7 +26,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          SHA=${{ github.sha }}
           gh release create "${{ github.ref_name }}" \
              --repo="${{ github.repository }}" \
              --title="${{ github.ref_name }}, SHA ${{ github.sha }}" \
-             --generate-notes --notes "SHA ${{ github.shafull }}"
+             --generate-notes --notes "SHA ${SHA:0:40}"
