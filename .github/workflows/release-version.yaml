@@ -19,3 +19,20 @@ jobs:
   release-version:
     name: release version
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@main
+
+  # notify
+  # on-success:
+  #   name: deploy
+  #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
+  #   needs:
+  #     - static-code-analysis
+  #     - plan-pocdev-changes
+  #     - apply-pocdev-changes
+  #     - pocdev-smoke-tests
+  #   with:
+  #     message: "poc-platform-eks-core-services pocdev deployment - URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+  #     sns-topic-name: "slack_notification_topic"
+  #   secrets:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #   if: success()

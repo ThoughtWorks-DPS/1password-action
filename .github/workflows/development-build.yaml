@@ -25,39 +25,3 @@ jobs:
     uses: ./.github/workflows/integration-tests.yaml
     secrets:
       OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-
-  # notify
-  # on-success:
-  #   name: deploy
-  #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
-  #   needs:
-  #     - static-code-analysis
-  #     - plan-pocdev-changes
-  #     - apply-pocdev-changes
-  #     - pocdev-smoke-tests
-  #   with:
-  #     message: "poc-platform-eks-core-services pocdev deployment - URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-  #     sns-topic-name: "slack_notification_topic"
-  #   secrets:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #   if: success()
-
-  # on-failure:
-  #   name: fail
-  #   uses: aws-engineering-poc/shared-actions/.github/workflows/notify.yaml@main
-  #   needs:
-  #     - static-code-analysis
-  #     - plan-pocdev-changes
-  #     - apply-pocdev-changes
-  #     - pocdev-smoke-tests
-  #   with:
-  #     message: "Failure - poc-platform-eks-core-services pocdev deployment - URL : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-  #     sns-topic-name: "slack_notification_topic"
-  #   secrets:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #   if: failure()
-
-  #     - name: install 1Password CLI
-  #       uses: 1password/install-cli-action@v1

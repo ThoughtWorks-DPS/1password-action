@@ -16,8 +16,8 @@ permissions:
 
 jobs:
 
-  static-code-analysis:
-    name: 1passwrd-action integration tests
+  integration-tests:
+    name: 1password-action integration tests
     runs-on: ubuntu-latest
 
     env:
