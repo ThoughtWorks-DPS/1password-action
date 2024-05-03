@@ -6,7 +6,8 @@ run-name: 1passwrd-action integration tests
 on:
   workflow_call:
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
 
