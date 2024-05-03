@@ -71,10 +71,10 @@ runs:
         #!/usr/bin/env bash
         set -eo pipefail
 
-        if [[ "${{ inputs.out-file }}" == ""]]; then
+        if [[ "${{ inputs.out-file }}" == "" ]]; then
           op inject -i ${{ inputs.tpl-path }}/${{ inputs.tpl-file }}.${{ inputs.tpl-ext }} -o ${{ inputs.out-path }}/${{ inputs.tpl-file }}
         else
-          op inject -i ${{ inputs.tpl-path }}/${{ inputs.tpl-file }}.${{ inputs.tpl-ext }} -o ${{ inputs.out-path }}/${{ inputs.out-file }}
+          op inject -i ${{ inputs.tpl-path }}/${{ inputs.tpl-file }}.${{ inputs.tpl-ext }} -o ${{ inputs.out-path }}/"test"   # ${{ inputs.out-file }}
         fi
 
     - shell: bash
