@@ -41,7 +41,7 @@ jobs:
           channel-id: 'leb-events'
           slack-message: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_BOT_TOKEN: $SLACK_BOT_TOKEN
 
       # - name: Notify empc teams
       #   uses: rtCamp/action-slack-notify@v2
