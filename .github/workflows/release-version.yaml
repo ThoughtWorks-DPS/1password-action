@@ -27,46 +27,17 @@ jobs:
 
     steps:
 
-      - name: Load slack webhook
-        uses: 1password/load-secrets-action@v2
+      - name: Load gha-slack-bot token
+        uses: 1password/load-secrets-action@581a835fb51b8e7ec56b71cf2ffddd7e68bb25e0    # v2.0.0
         with:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          SLACK_WEBHOOK_TYPE: op://empc-lab/svc-slack/lab-events
+          SLACK_BOT_TOKEN: op://empc-lab/svc-slack/gha-slack-bot-token
 
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.26.0
+      - name: Post new release message
+        uses: ThoughtWorks-DPS/common-actions/slack-bot@b7cf3979fa5745551c5a62afa5e8e07f75ffa687    # v0.1.0
         with:
-          payload: |
-            {
-              "text": "New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: $SLACK_WEBHOOK_URL
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-
-      # - name: Notify empc teams
-      #   uses: slackapi/slack-github-action@v1.26.0
-      #   with:
-      #     channel-id: 'leb-events'
-      #     slack-message: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
-      #   env:
-      #     SLACK_BOT_TOKEN: $SLACK_BOT_TOKEN
-
-      # - name: Notify empc teams
-      #   uses: rtCamp/action-slack-notify@v2
-      #   env:
-      #     SLACK_CHANNEL: lab-events
-      #     SLACK_MESSAGE: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
-      #     SLACK_WEBHOOK: $SLACK_WEBHOOK
+          channel: lab-events
+          message: New release ThoughtWorks/1password-action
+          include-tag: true
