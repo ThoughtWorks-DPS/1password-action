@@ -41,7 +41,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}',
+              "text": "New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}",
               "blocks": [
                 {
                   "type": "section",
