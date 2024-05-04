@@ -33,11 +33,19 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          SLACK_WEBHOOK: op://empc-lab/svc-slack/lab-events
+          SLACK_BOT_TOKEN: op://empc-lab/svc-slack/post-bot-token
 
       - name: Notify empc teams
-        uses: rtCamp/action-slack-notify@v2
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: 'leb-events'
+          slack-message: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
         env:
-          SLACK_CHANNEL: lab-events
-          SLACK_MESSAGE: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
-          SLACK_WEBHOOK: $SLACK_WEBHOOK
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      # - name: Notify empc teams
+      #   uses: rtCamp/action-slack-notify@v2
+      #   env:
+      #     SLACK_CHANNEL: lab-events
+      #     SLACK_MESSAGE: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
+      #     SLACK_WEBHOOK: $SLACK_WEBHOOK
