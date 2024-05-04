@@ -40,4 +40,4 @@ jobs:
         env:
           SLACK_CHANNEL: lab-events
           SLACK_MESSAGE: 'New release: ThoughtWorks-DPS/1password-action ${{ github.ref_name }}'
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: $SLACK_WEBHOOK
