@@ -18,7 +18,7 @@ jobs:
 
   static-code-analysis:
     name: static code analysis
-    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@a2c1ad42c5abeb5a348328cfaf29b7c901dc40a5   # v0.1.2
+    uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/static-code-analysis.yaml@0df0049e1a6ec78f1e58c7bd4be6bd5574abc820   # v0.1.4
 
   integration-tests:
     name: integration test
