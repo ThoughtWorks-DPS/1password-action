@@ -9,22 +9,6 @@
 
 Action for common 1password-cli uses.  
 
-### env
-
-`source` ENV values from 1password Vault into GitHub Actions $GITHUB_ENV from a local file.
-
-example bash env-file format:
-
-TFE_TOKEN=op://my-vault/terrafor-cloud/team-token
-SLACK_BOT_TOKEN=op://my-vault/slack/bot-token
-
-```yaml
-- name: source $GITHUB_ENV from file using 1password-action/env
-  uses: ThoughtWorks-DPS/1password-action/env@v0.1.0
-  with:
-    env-file: prod.env
-```
-
 ### tpl
 
 Populate template file with values from 1password vault and write to out-file.
