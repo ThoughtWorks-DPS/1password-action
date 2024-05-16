@@ -36,7 +36,6 @@ Provides support for running custom bash scripts before an dafter template actio
 ### write-to-file
 
 Writes op-value from 1password to out-file.
-
 op-value format = vault/item/field.
 
 ```yaml
