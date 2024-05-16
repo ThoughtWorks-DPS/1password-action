@@ -19,6 +19,8 @@ jobs:
   release-version:
     name: release version
     uses: ThoughtWorks-DPS/gha-tools-action/.github/workflows/release-version.yaml@main
+    secrets:
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
     with:
       before-release: true
       release-message: New release ThoughtWorks-DPS/1password-action
