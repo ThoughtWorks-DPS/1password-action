@@ -21,4 +21,5 @@ runs:
       with:
         export-env: true
       env:
+        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         SLACK_BOT_TOKEN: op://empc-lab/svc-slack/post-bot-token
